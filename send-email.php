@@ -1,35 +1,42 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $message = $_POST["message"];
+$message_sent = false;
+ if(isset($_POST['email'])&& $_POST['email'] !=''){
+   if(  filter_var($_POST['name'], FILTER_VALIDATE_EMAIL) ){
+        //sumit the form
+        $userName = $_POST['name'];
+       $userEmail = $_POST['email'];
+       $messageSubject = $_POST['subject'];
+       $message = $_POST['message'];
+       
+       $to = "emmanuelokechukwu49890@gmail.com";
+       $body = "";
+       
+       $body .= "From: ".$userName. "\r\n";
+       $body .= "Email: ".$userEmail. "\r\n";
+       $body .= "Message ".$message. "\r\n";
+       
+       //mail($to,$message,$body);
+       
+       $message_sent = true; 
+   }
+   else{
+     $invalid_class_name = "form-invalid";
+   }
+         
+ }
 
-    // Check if inputs are not empty
-    if (!empty($name) && !empty($email) && !empty($message)) {
-        // Check if email is valid
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            // Send email here using a mail function or a third-party email library
-            $to = "emmanuelokechukwu49890@gmail.com";
-            $subject = "Contact Form";
-            $headers = "From: $email" . "\r\n" . "Reply-To: $email" . "\r\n";
 
-            // Construct the email body
-            $emailBody = "Name: $name" . "\n";
-            $emailBody .= "Email: $email" . "\n";
-            $emailBody .= "Message: $message" . "\n";
-
-            // Send the email
-            mail($to, $subject, $emailBody, $headers);
-
-            // Redirect or display success message
-            echo "Email sent successfully!";
-        } else {
-            echo "Invalid email address";
-        }
-    } else {
-        echo "Please fill in all fields";
-    }
-} else {
-    echo "Invalid request";
-}
 ?>
+
+<?php
+if($message_sent);
+?>
+<h3>Thanks, we'll be in touch</h3>
+<?php
+else:
+?>
+<?php
+endif:
+?>
+        
+        

@@ -488,14 +488,14 @@ TO CREATE DIGITAL PRODUCTS AND EXPERIENCES. NATIONAL AND INTERNATIONAL CUSTOMERS
                                 </div>
                                 <div class="form-item col-6 padd-15">
                                     <div class="form-group">
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                        <input <? = $invalid_class_name ?? "" ?> type="email" name="email" id="email" class="form-control" placeholder="Email">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-item col-12 padd-15">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Subject">
+                                        <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject">
                                     </div>
                                 </div>
                             </div>
@@ -508,7 +508,7 @@ TO CREATE DIGITAL PRODUCTS AND EXPERIENCES. NATIONAL AND INTERNATIONAL CUSTOMERS
                             </div>
                             <div class="row">
                                 <div class="form-item col-12 padd-15">
-                                    <input type="submit" value="Send Message" class="btn">
+                                    <button type="submit" class="btn">Send Message!</button>
                                 </div>
                             </div>
                         </div>
