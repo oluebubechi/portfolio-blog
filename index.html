@@ -1,3 +1,26 @@
+```php
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+
+    // Process the received data here, e.g., send an email notification
+
+    // Clear the form data
+    $_POST = array();
+
+    // Redirect to a thank you page
+    header('Location: thank-you.php');
+    exit;
+}
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -477,17 +500,18 @@ TO CREATE DIGITAL PRODUCTS AND EXPERIENCES. NATIONAL AND INTERNATIONAL CUSTOMERS
                     <h3 class="contact-title padd-15">SEND ME AN EMAIL</h3>
                     <h4 class="contact-sub-title padd-15">I'M VERY REPOSIVE TO MESSAGES</h4>
                     <!-- =========== Contact Form ================= -->
+                    <form method="POST" action="">
                     <div class="row">
                         <div class="contact-form padd-15">
                             <div class="row">
                                 <div class="form-item col-6 padd-15">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name">
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="form-item col-6 padd-15">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
                                     </div>
                                 </div>
                             </div>
@@ -501,17 +525,18 @@ TO CREATE DIGITAL PRODUCTS AND EXPERIENCES. NATIONAL AND INTERNATIONAL CUSTOMERS
                             <div class="row">
                                 <div class="form-item col-12 padd-15">
                                     <div class="form-group">
-                                        <textarea name="" class="form-control" id="" placeholder="Message"></textarea>
+                                        <textarea name="" class="form-control" name="message" id="message" placeholder="Message"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-item col-12 padd-15">
-                                    <button type="submit" class="btn">Send Message</button>
+                                    <button type="submit" value="submit" class="btn">Send Message</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    </
                 </div>
             </section>
             <!-- ==== contact Section end ====== -->
