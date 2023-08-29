@@ -1,18 +1,31 @@
-```php
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $message = $_POST['message'];
-
-    // Process the received data here, e.g., send an email notification
-
-    // Clear the form data
-    $_POST = array();
-
-    // Redirect to a thank you page
-    header('Location: thank-you.php');
-    exit;
+if(isset($_POST['submit'])){
+	//Get form data
+	$name = $_POST['name']; 
+	$email = $_POST['email'];
+	$message = $_POST['message'];
+	
+    //Email address validation and display error message
+	$email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
+ 
+    if (!preg_match($email_exp, $email)) {
+        echo '<br><span style="color:red;">The Email address you entered is not valid.</span>';
+		exit;
+    }
+	
+	$to = "yourname@example.com";  //recipient email address
+	$subject = "Contact Form";  //Subject of the email
+	
+	//Message content to send in an email
+	$message = "Name: ".$name."<br>Email: ".$email."<br> Message".$message;
+	
+	//Email headers
+	$headers = "From: https://seths-portfolio.netlify.app"."\r\n";
+	$headers = "CC: someone@example.com";
+	$headers .= "Reply-To:".$email."\r\n";
+	
+	//Send email 
+	mail($to, $subject, $message, $headers);
 }
 ?>
 
