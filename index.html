@@ -1,39 +1,3 @@
-<?php
-if(isset($_POST['submit'])){
-	//Get form data
-	$name = $_POST['name']; 
-	$email = $_POST['email'];
-	$message = $_POST['message'];
-	
-    //Email address validation and display error message
-	$email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
- 
-    if (!preg_match($email_exp, $email)) {
-        echo '<br><span style="color:red;">The Email address you entered is not valid.</span>';
-		exit;
-    }
-	
-	$to = "emmanuelokechukwu49890@gmail.com";  //recipient email address
-	$subject = "Contact Form";  //Subject of the email
-	
-	//Message content to send in an email
-	$message = "Name: ".$name."<br>Email: ".$email."<br> Message".$message;
-	
-	//Email headers
-	$headers = "From: emmanuelokechukwu49890@gmail.com"."\r\n";
-	$headers = "CC: someone@example.com";
-	$headers .= "Reply-To:".$email."\r\n";
-	
-	//Send email 
-	mail($to, $subject, $message, $headers);
-}
-?>
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -513,7 +477,7 @@ TO CREATE DIGITAL PRODUCTS AND EXPERIENCES. NATIONAL AND INTERNATIONAL CUSTOMERS
                     <h3 class="contact-title padd-15">SEND ME AN EMAIL</h3>
                     <h4 class="contact-sub-title padd-15">I'M VERY REPOSIVE TO MESSAGES</h4>
                     <!-- =========== Contact Form ================= -->
-                    <form method="POST" action="">
+                    <form method="POST" action="send-email.php">
                     <div class="row">
                         <div class="contact-form padd-15">
                             <div class="row">
@@ -538,7 +502,7 @@ TO CREATE DIGITAL PRODUCTS AND EXPERIENCES. NATIONAL AND INTERNATIONAL CUSTOMERS
                             <div class="row">
                                 <div class="form-item col-12 padd-15">
                                     <div class="form-group">
-                                        <textarea name="" class="form-control" name="message" id="message" placeholder="Message"></textarea>
+                                        <textarea name="message" class="form-control" name="message" id="editor" placeholder="Message" required></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -576,7 +540,18 @@ TO CREATE DIGITAL PRODUCTS AND EXPERIENCES. NATIONAL AND INTERNATIONAL CUSTOMERS
     <!-- Style Container End -->
     <!-- ======= JS FILES ======= -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" ></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
     <script src="js/script.js"></script>
     <script src="js/style-switcher.js"></script>
+    <script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+  </script>
 </body>
 </html>
